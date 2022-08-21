@@ -33,7 +33,7 @@ def make_instance_pkl_files(root_dir, midi_dir, num_bars, frame_per_bar, pitch_r
     unit_time = 1 / frame_per_second
 
     song_list = sorted(glob.glob(os.path.join(root_dir, midi_dir, '*')))
-    midi_files = sorted(glob.glob(os.path.join(root_dir, midi_dir, '*/*.mid')))
+    midi_files = sorted(glob.glob(os.path.join(root_dir, midi_dir, '*.mid'))) # changed from */*.mid
 
     num_eval = int(len(song_list) * data_ratio[1])
     num_test = int(len(song_list) * data_ratio[2])
@@ -169,8 +169,8 @@ def make_instance_pkl_files(root_dir, midi_dir, num_bars, frame_per_bar, pitch_r
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--root_dir', type=str, default='/data2/score2midi')
-    parser.add_argument('--midi_dir', type=str, default='cleansed_midi_twotrack_ckey')
+    parser.add_argument('--root_dir', type=str, default='./nottingham_dataset/MIDI')
+    parser.add_argument('--midi_dir', type=str, default='melody_and_chords')
     parser.add_argument('--num_bars', type=int, default=8)
     parser.add_argument('--frame_per_bar', type=int, default=16)
     parser.add_argument('--pitch_range', type=int, default=48)
@@ -185,3 +185,4 @@ if __name__ == '__main__':
     shift = args.shift
 
     make_instance_pkl_files(root_dir, midi_dir, num_bars, frame_per_bar, pitch_range, shift)
+    
