@@ -1,7 +1,7 @@
-asset_root: 'path/to/save/results'
+asset_root: 'saved_models/'
 
 data_io:
-  path: 'path/to/instance/pklfiles'
+  path: 'nottingham_dataset/MIDI/pkl_files/instance_pkl_8bars_fpb16_48p_12keys'
 
   loader:
     num_workers: 8
@@ -26,7 +26,7 @@ experiment:
   verbose: True
   num_prime: 16
   attention_map: False
-  rhythm_only: False
+  rhythm_only: True
   restore_rhythm:
     idx: 1
     epoch: 100

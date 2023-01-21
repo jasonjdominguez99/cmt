@@ -17,6 +17,7 @@ class ChordMusicDataset(Dataset):
         self.file_paths = self._get_file_paths()
 
     def _get_file_paths(self):
+        # print(os.path.join(self.root_path, self.mode, '*.pkl'))
         return sorted(glob.glob(os.path.join(self.root_path, self.mode, '*/*.pkl')))
 
     def __len__(self):

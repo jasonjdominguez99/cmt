@@ -16,7 +16,7 @@ from trainer import CMTtrainer
 parser = argparse.ArgumentParser()
 parser.add_argument('--idx', type=int, help='experiment number',  default=0)
 parser.add_argument('--gpu_index', '-g', type=int, default="0", help='GPU index')
-parser.add_argument('--ngpu', type=int, default=4, help='0 = CPU.')
+parser.add_argument('--ngpu', type=int, default=1, help='0 = CPU.')
 parser.add_argument('--optim_name', type=str, default='adam')
 parser.add_argument('--restore_epoch', type=int, default=-1)
 parser.add_argument('--load_rhythm', dest='load_rhythm', action='store_true')

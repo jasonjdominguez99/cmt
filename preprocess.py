@@ -32,8 +32,17 @@ def make_instance_pkl_files(root_dir, midi_dir, num_bars, frame_per_bar, pitch_r
     frame_per_second = (frame_per_bar / beat_per_bar) * (bpm / 60)
     unit_time = 1 / frame_per_second
 
-    song_list = sorted(glob.glob(os.path.join(root_dir, midi_dir, '*')))
     midi_files = sorted(glob.glob(os.path.join(root_dir, midi_dir, '*.mid'))) # changed from */*.mid
+    song_list = []
+    if not os.path.exists(os.path.join(root_dir, midi_dir, 'songs')):
+        # os.makedirs(os.path.join(root_dir, midi_dir, 'songs'))
+        for fname in midi_files:
+            # print(fname)
+            print(fname.split('/')[-1].split('\\')[-1].split('.')[0])
+            song_list.append(fname.split('/')[-1].split('\\')[-1].split('.')[0])
+    else:
+        song_list = sorted(glob.glob(os.path.join(root_dir, midi_dir, 'songs/*'))) # changed from '*'
+    
 
     num_eval = int(len(song_list) * data_ratio[1])
     num_test = int(len(song_list) * data_ratio[2])
@@ -43,7 +52,7 @@ def make_instance_pkl_files(root_dir, midi_dir, num_bars, frame_per_bar, pitch_r
     test_set = random.sample(eval_test_cand - set(eval_set), num_test)
 
     for midi_file in tqdm(midi_files, desc="Processing"):
-        song_title = midi_file.split('/')[-2]
+        song_title = midi_file.split('/')[-1].split('\\')[-1].split('.')[0]
         filename = midi_file.split('/')[-1].split('.')[0]
 
         if song_title in eval_set:

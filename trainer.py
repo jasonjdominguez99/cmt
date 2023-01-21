@@ -167,7 +167,7 @@ class CMTtrainer(BaseTrainer):
             rhythm_criterion = self.criterion[0]
             pitch_criterion = self.criterion[1]
 
-            rhythm_loss = rhythm_criterion(rhythm_out, data['rhythm'][:, 1:].contiguous().view(-1))
+            rhythm_loss = rhythm_criterion(rhythm_out, data['rhythm'][:, 1:].contiguous().view(-1).type(torch.long))
             total_rhythm_loss += rhythm_loss.item()
 
             result = dict()
